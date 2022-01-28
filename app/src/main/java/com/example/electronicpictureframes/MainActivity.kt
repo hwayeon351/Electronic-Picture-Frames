@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -64,6 +65,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initStartPhotoFrameModeButton() {
+        startPhotoFrameModeButton.setOnClickListener {
+            val intent = Intent(this, PhotoFrameActivity::class.java)
+            imageUriList.forEachIndexed { index, uri ->
+                intent.putExtra("photo$index", uri.toString())
+            }
+            intent.putExtra("photoListSize", imageUriList.size)
+            startActivity(intent)
+        }
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -85,8 +97,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigatePhotos() {
+        //Content Provider에서 SAF(Storage Access Framework) 방법 사용
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
+        //Activity와 Activity 사이의 통신을 위해 intent를 주고 받아야 한다.
+        //사진 앱에서 보낸 데이터를 받기 위해 startActivityForResult 함수를 호출해서 onActivityResult 콜백 함수를 통해 intent에 담긴 데이터를 받는다.
         startActivityForResult(intent, 2000)
     }
 
@@ -129,7 +144,4 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun initStartPhotoFrameModeButton() {
-
-    }
 }
