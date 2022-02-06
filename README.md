@@ -1,7 +1,7 @@
 # Electronic-Picture-Frames
 ### 전자액자 앱
 
-####사진 앱에서 사진을 선택해 앱에 사진을 추가하고, 전자액자를 실행해 가로화면으로 사진이 하나씩 넘어가는 기능을 구현한 앱 입니다.
+#### 사진 앱에서 사진을 선택해 앱에 사진을 추가하고, 전자액자를 실행해 가로화면으로 사진이 하나씩 넘어가는 기능을 구현한 앱 입니다.
 ### Blog
 * <https://hwayomingdlog.tistory.com/214>
 * <https://hwayomingdlog.tistory.com/217>
